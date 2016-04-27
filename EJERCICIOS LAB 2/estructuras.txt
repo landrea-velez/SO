@@ -1,0 +1,133 @@
+-----------------------------
+|        ESTRUCTURAS    |
+ ----------------------------
+
+struct point{
+	int x;
+	int y;
+};
+
+struct point myPoint1={1,2};
+struct point myPoint2, myPoint3;
+myPoint2={3,4};
+myPoint3.x = 5;
+myPoint3.y = 6;
+
+
+--------
+
+
+struct cdMusic {
+	char title[40];
+	char artist[40];
+	char genere[15];
+	int numSongs;
+	int releaseYears;
+	float price;
+} cd1, cd2; //se declaran dos variables después de definir la estructura
+
+cd1={"brindo con el alma", "Diomedes Diaz", "Vallenato", 11, 1986, 19900.0};
+
+struct cdMusic {
+	char title[40];
+	char artist[40];
+	char genere[15];
+	int numSongs;
+	int releaseYears;
+	float price;
+} cd1, cd2; //se declaran dos variables después de definir la estructura
+
+cd1={"brindo con el alma", "Diomedes Diaz", "Vallenato", 11, 1986, 19900.0};
+//inicializando cada miembre por separado
+
+strcpy(cd2.title, "Incarnate");
+strcpy(cd2.artist, "Killswitch Engage");
+strcpy(cd2.genere, "Metalcore");
+cd2.numsongs = 12;
+cd2.releaseYears = 2016;
+cd2.price = 200.0;
+
+
+
+------------------
+
+typedef struct {
+	struct point p1;
+	struct point p2;
+} rect;
+
+rect r = {{1,1},{5,4}};
+
+
+-----------------
+
+//definicion de la estructura
+
+struct student {
+	char name[40];
+	int numStudent;
+	float grade;
+};
+
+// inicialización de una nueva estructura
+struct student student1 = {"fulano","5","2.1"};
+
+//apuntador
+struct student *ptrStudent;
+ptrStudent = &student1;
+
+//para acceder a los miembros de la estructura
+ptrStudent -> numStudent = 5;
+printf("%d",ptrStudent -> numStudent);
+
+-----------------------
+
+#include <stdio.h>
+#include <stdlib.h>
+
+const char FILE_NAME[] = "input.txt";
+int main (){
+    int count = 0; //número de caracteres leidos
+    FILE *in_file;
+    int ch;
+    
+    /*abrir el archivo*/
+    in_file = fopen(FILE_NAME, "r"); // Abrir el archivo en modo lectura
+    // Siempre realice esta verificación
+    if(in_file == NULL){
+        printf("No puede abrirse %s\n", FILE_NAME);
+        exit(8);
+    }
+    /*Leer el archivo*/
+    while(1){
+        ch = fgetc(in_file);
+        printf("%c\n", ch);
+        
+        if(ch == EOF){
+            break;
+        }
+        ++count;
+    }
+    
+    fputc("x", in_file);
+    printf("Numero de caracteres en el archivo %s: %d\n", FILE_NAME, count);
+    //Cerrar el archivo
+    fclose(in_file);
+return 0;
+}       
+
+
+tream a ello. El argumento modo apunta a una cadena empezando con una serie de caracteres de la siguiente secuencia:
+r	Abre un fichero de texto para lectura
+w	Trunca, a longitud cero o crea un fichero de texto para escribir
+a	Añade; abre o crea un fichero de texto para escribir al final del fichero (EOF)
+La función fopen retorna un puntero al objeto controlando el stream. Si el proceso de abertura no es realizado acabo, entonces retorna un puntero nulo
+
+
+fgetc() lee el siguiente carácter de flujo y lo devuelve como un
+       unsigned  char  modelado a un int, o EOF al llegar al final del flujo o
+       en caso de error.
+getc() es equivalente a fgetc() excepto en el hecho de que puede  estar
+       implementado como una macro que evalúe flujo más de una vez.
+
+"w+" (Read/Write. Opens and clears the contents of file; or creates a new file if it doesn't exist)
